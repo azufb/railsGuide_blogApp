@@ -42,12 +42,13 @@ class ArticlesController < ApplicationController
 
   # editアクション
   def edit
-    # showアクションと同じく、findメソッドで指定のidのデータを取ってくる
+    # 対象の記事をfindメソッドで取ってきてインスタンス変数に入れる
     @article = Article.find(params[:id])
   end
 
   # updateアクション
   def update
+    # 対象の記事をfindメソッドで取ってきてインスタンス変数に入れる
     @article = Article.find(params[:id])
 
     # updateメソッドで新しい内容でデータベースを保存
@@ -56,6 +57,17 @@ class ArticlesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  # destroyアクション
+  def destroy
+    # 対象の記事をfindメソッドで取ってきてインスタンス変数に入れる
+    @article = Article.find(params[:id])
+    # destroyメソッドで削除
+    @article.destroy
+
+    # 最初の一覧ページにリダイレクト
+    redirect_to root_path, status: :see_other
   end
 
   private
