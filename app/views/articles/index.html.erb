@@ -6,7 +6,7 @@
     <% @articles.each do |article| %>
         <li>
             <!-- Rubyコードを実行して(評価して)返された値を出力するためのERBタグ -->
-            <%= article.title %>
+            <%= link_to article.title, article %>
         </li>
     <% end %>
 </ul>
