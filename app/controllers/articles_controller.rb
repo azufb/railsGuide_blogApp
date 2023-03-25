@@ -16,4 +16,36 @@ class ArticlesController < ApplicationController
     # ルーティングのパラメータとして受け取った:idが保存されているparamsから:idを取得
     @article = Article.find(params[:id])
   end
+
+  # newアクション
+  def new
+    # newメソッドでArticleクラスのインスタンスを作成
+    # データベースには保存しない
+    # インスタンス化された記事は、ビューでフォームをビルドするときに使われる
+    @article = Article.new
+  end
+
+  # createアクション
+  def create
+    # タイトルと本文を持つ新しい記事をインスタンス化
+    @article = Article.new(article_params)
+
+    # saveメソッドで、データベースを保存
+    if @article.save
+      # 保存に成功すると、記事のページにリダイレクト
+      redirect_to @article
+    else
+      # 保存に失敗すると、フォームを再表示
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+  def article_params
+    # 送信されたフォームのデータはparamasハッシュに保存される
+    # Strong Parametersでparamsをフィルタリング
+    # ブラウザ側で勝手にフィールドを追加されてデータを上書き等されないようにするため
+    # ここでフィルタリングされて、使えるパラメータは、titleとbodyのみ
+    params.require(:article).permit(:title, :body)
+  end
 end
