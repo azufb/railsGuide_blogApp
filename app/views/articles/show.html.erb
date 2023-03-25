@@ -10,3 +10,7 @@
         <%= link_to "Back to Home", root_path %>
     </li>
 </ul>
+
+<!-- Turbo不使用でやると、link_toではDELETEリクエストが送られず、削除できないので、button_toで代用 -->
+<!-- 参考資料：https://qiita.com/shizen-shin/items/40b8426da34cc2d170c7 -->
+<%= button_to "Destroy", article_path{@article}, method: :delete %>
