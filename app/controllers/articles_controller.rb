@@ -40,6 +40,24 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # editアクション
+  def edit
+    # showアクションと同じく、findメソッドで指定のidのデータを取ってくる
+    @article = Article.find(params[:id])
+  end
+
+  # updateアクション
+  def update
+    @article = Article.find(params[:id])
+
+    # updateメソッドで新しい内容でデータベースを保存
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def article_params
     # 送信されたフォームのデータはparamasハッシュに保存される
