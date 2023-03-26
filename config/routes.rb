@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # resourcesを使うことで、リソースの集まりを対応づけるのによく使われるルーティングを全て対応づけてくれる
   # いちいち、get パス, to: コントローラ#メソッド名と書かなくて良い
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   # GET /articlesリクエストをArticlesControllerのindexアクションに対応づける
   # get "/articles", to: "articles#index"
