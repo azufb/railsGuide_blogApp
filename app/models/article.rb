@@ -5,7 +5,8 @@ class Article < ApplicationRecord
     include Visible
 
     # has_manyは、1件の記事は複数のコメントを持つことを示す(1対多)
-    has_many :comments
+    # 記事が削除されたら、コメントも削除する
+    has_many :comments, dependent: :destroy
 
     # validatesでバリデーション
     # titleは必須入力
