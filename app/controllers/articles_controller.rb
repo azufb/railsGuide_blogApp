@@ -76,6 +76,6 @@ class ArticlesController < ApplicationController
     # Strong Parametersでparamsをフィルタリング
     # ブラウザ側で勝手にフィールドを追加されてデータを上書き等されないようにするため
     # ここでフィルタリングされて、使えるパラメータは、titleとbodyのみ
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :status)
   end
 end

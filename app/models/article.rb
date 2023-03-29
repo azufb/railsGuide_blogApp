@@ -2,6 +2,8 @@
 # Active Recordと言うRailsの機能を介してアプリケーションのデータベースとやり取りする
 
 class Article < ApplicationRecord
+    include Visible
+
     # has_manyは、1件の記事は複数のコメントを持つことを示す(1対多)
     has_many :comments
 
