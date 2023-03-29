@@ -1,0 +1,18 @@
+<!-- form_with呼び出しで配列を渡すことで、「/articles/1/comments」のようなネストしたルーティングを生成する -->
+<%= form_with model: [@article, @article.comments.build] do |form| %>
+    <p>
+        <%= form.label :commenter %><br>
+        <%= form.text_field :commenter %>
+    </p>
+    <p>
+        <%= form.label :body %><br>
+        <%= form.text_area :body %>
+    </p>
+    <div>
+        <%= form.label :status %>
+        <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </div>
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>
