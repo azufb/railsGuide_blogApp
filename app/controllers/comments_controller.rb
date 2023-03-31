@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+    # 認証された人物のみ、コメントを削除できる
+    http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
+
     # createアクション
     def create
         # 対象の記事をfindメソッドでデータベースから取得してインスタンス変数に格納

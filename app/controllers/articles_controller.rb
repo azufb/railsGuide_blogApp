@@ -2,6 +2,10 @@
 # アクションは、リクエストを扱うために必要な処理を実行する(インスタンスメソッド)
 
 class ArticlesController < ApplicationController
+  # http_basic_authenticate_withメソッドを使って、認証されてない人物がアクセスできないようにする
+  # indexアクションとshowアクションは自由にアクセスでき、それ以外は認証が必要
+  http_basic_authenticate_with name: 'dhh', password: "secret", except: [:index, :show]
+
   # indexアクション
   def index
     # データベースから全ての記事を取り出す
